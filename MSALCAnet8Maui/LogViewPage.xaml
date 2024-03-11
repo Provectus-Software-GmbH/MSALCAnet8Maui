@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"             
+             x:Class="MSALCAnet8Maui.LogViewPage"             
+             Title="Logs Page">
+
+    <ContentPage.ToolbarItems>        
+        <ToolbarItem Clicked="ToolbarItem_Clicked" Text="Share Logs"/>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Margin="10">
+        <ListView
+            x:Name="ListViewLogs"
+            RowHeight="40"            
+            SelectionMode="None"
+            SeparatorVisibility="Default"
+            ItemTapped="ListViewLogs_ItemTapped">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <VerticalStackLayout Spacing="-2">                            
+                            <Label
+                                FontSize="Micro"
+                                Text="{Binding time, StringFormat='{0:MM.dd.yyyy HH:mm:ss}'}"
+                                TextColor="Gray"/>
+                            <Label
+                                FontSize="Small"
+                                Text="{Binding message}" 
+                                LineBreakMode="TailTruncation"/>
+                        </VerticalStackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

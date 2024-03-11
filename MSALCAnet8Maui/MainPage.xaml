@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MSALCAnet8Maui.MainPage"
+             Title="Main Page">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+
+            <Label
+                Text="PVS MSAL +CA POC"           
+                FontSize="30"
+                Margin="0,20,0,0"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text=".net8 Maui"           
+                FontSize="18"
+                Margin="0,-20,0,0"
+                HorizontalOptions="Center" />
+
+            <Button                
+                Text="Acquire Token"                 
+                Clicked="Button_AcquireToken"
+                HorizontalOptions="Fill" />
+            
+            <Button                
+                Text="Sign Out &amp; Remove Account"                 
+                Clicked="Button_SignOutRemoveAcc"
+                HorizontalOptions="Fill" />
+
+            <Button                
+                Text="Get Token Status (silent)"                 
+                Clicked="Button_TokenStatus"
+                HorizontalOptions="Fill" />
+
+            <Button
+                Margin="0,60,0,0"
+                Text="View / Share Logs"                 
+                Clicked="Button_ViewLogs"
+                HorizontalOptions="Fill" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
