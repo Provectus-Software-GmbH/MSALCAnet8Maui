@@ -13,13 +13,13 @@ iPhone should be MAM registered via Companyportal
 Update settings as per your app registration and bundleID in MainPage.xaml.cs 
 AND ALSO update corresponding entries in
 Platforms/iOS/Entitlements.plist:
-> Keychain Access Groups -> $(AppIdentifierPrefix){bundleID}
+- Keychain Access Groups -> $(AppIdentifierPrefix){bundleID}
 Platforms/iOS/Info.plist:
-> IntuneMAMSettings -> ADALClientID -> {clientId}
-> IntuneMAMSettings -> ADALRedirectUri -> msauth.{bundleID}://auth
-> URL types -> URL identifier -> {bundleID}
-> URL types -> URL Schemes -> msauth.{bundleID}-intunemam
-> URL types -> URL Schemes -> msauth.{bundleID}
+- IntuneMAMSettings -> ADALClientID -> {clientId}
+- IntuneMAMSettings -> ADALRedirectUri -> msauth.{bundleID}://auth
+- URL types -> URL identifier -> {bundleID}
+- URL types -> URL Schemes -> msauth.{bundleID}-intunemam
+- URL types -> URL Schemes -> msauth.{bundleID}
 
 # Helpful Resources:
 Get started with the Microsoft Intune App SDK:
