@@ -24,6 +24,8 @@ public partial class MainPage : ContentPage
     // > URL types -> URL identifier -> {bundleID}
     // > URL types -> URL Schemes -> msauth.{bundleID}
     // > URL types -> URL Schemes -> msauth.{bundleID}-intunemam
+    // MSALCAnet8Maui.csproj:
+    // > ApplicationId -> {bundleID}
 
     private const string clientId = "e9cd7eb8-86b6-4f55-8af8-eb83e3870f3f";
     private const string redirectURI = "msauth.com.company.mauiauthtestapp://auth";
