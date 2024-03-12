@@ -23,6 +23,9 @@ Platforms/iOS/Info.plist:
 - URL types -> URL Schemes -> msauth.{bundleID}-intunemam
 - URL types -> URL Schemes -> msauth.{bundleID}
 
+MSALCAnet8Maui.csproj:
+- ApplicationId -> {bundleID}
+
 # Helpful Resources:
 Get started with the Microsoft Intune App SDK:
 https://learn.microsoft.com/en-us/mem/intune/developer/app-sdk-get-started
