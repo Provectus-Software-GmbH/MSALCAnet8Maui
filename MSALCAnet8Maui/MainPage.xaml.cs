@@ -1,4 +1,6 @@
-﻿using CommunityToolkit.Maui.Alerts;
+﻿using System.Text;
+using System.Text.RegularExpressions;
+using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using Microsoft.Identity.Client;
 using Microsoft.Intune.MAM;
@@ -252,12 +254,21 @@ public partial class MainPage : ContentPage
         {
             ShowToast("NO accesstoken");
         }
-    }
-        
+    }        
 
     private async void Button_ViewLogs(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new LogViewPage(), false);
+    }
+
+    private void Button_IntuneDianosticConsole(object sender, EventArgs e)
+    {
+        IntuneMAMDiagnosticConsole.DisplayDiagnosticConsole();
+    }
+
+    private async void Button_ShareIntuneLogs(object sender, EventArgs e)
+    {
+        await ShareLogfiles();
     }
 
     // MISC    
@@ -269,6 +280,53 @@ public partial class MainPage : ContentPage
             var toast = Toast.Make(ToastText, ToastDuration.Long, 16);
             await toast.Show(ToastCancelTokenSource.Token);
         });
+    }
+
+    private async Task ShareLogfiles()
+    {
+        string BinaryType = "release";
+#if DEBUG
+        BinaryType = "debug";
+#endif
+
+        string FileName = string.Format("IntuneLog.{0}.txt", BinaryType);
+
+        var IntuneLogs = GetIntuneDiagnosticLogs();
+        if (string.IsNullOrEmpty(IntuneLogs)) return;
+
+
+        string LogsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "../Library", FileName);
+        File.WriteAllText(LogsPath, IntuneLogs);
+
+        // add current log file
+        List<ShareFile> LogfileToShare = new()
+        {
+            new ShareFile(LogsPath)
+        };
+
+        // share logs
+        await Share.RequestAsync(new ShareMultipleFilesRequest
+        {
+            Title = "Intune Logs",
+            Files = LogfileToShare
+        });
+    }
+
+    private string GetIntuneDiagnosticLogs()
+    {
+        var IntuneLogs = IntuneMAMDiagnosticConsole.DiagnosticInformation;
+        var sb = new StringBuilder();
+
+        foreach (var LogItem in IntuneLogs)
+        {
+            Console.WriteLine($"KEY: {LogItem.Key} -> VALUE: {LogItem.Value}");
+
+            sb.Append(LogItem.Key.ToString());
+            sb.Append(LogItem.Value.ToString());
+            sb.AppendLine();
+        }
+
+        return sb.ToString();
     }
 
 }

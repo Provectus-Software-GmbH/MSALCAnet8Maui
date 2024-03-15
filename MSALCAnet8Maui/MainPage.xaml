@@ -42,6 +42,16 @@
                 Clicked="Button_ViewLogs"
                 HorizontalOptions="Fill" />
 
+            <Button                
+                Text="Intune Diagnostic Console"                 
+                Clicked="Button_IntuneDianosticConsole"
+                HorizontalOptions="Fill" />
+
+            <Button                
+                Text="Share Intune Logs"                 
+                Clicked="Button_ShareIntuneLogs"
+                HorizontalOptions="Fill" />
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
